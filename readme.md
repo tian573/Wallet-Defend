@@ -1,112 +1,122 @@
-# Phaser 3 + Vite.js Template
-> Make Phaser 3 games with modern frontend tooling.
+<p align="center">
+  <img src="public/images/Title_WalletDefend.png" alt="Wallet Defend Logo" width="360" />
+</p>
 
-![License](https://img.shields.io/badge/license-MIT-green)
+<h1 align="center">Wallet Defend</h1>
 
-## Prerequisites
+<p align="center">
+  A 2D arcade defense game built with <b>Phaser 3</b> and <b>Vite</b>.<br/>
+  Defend your hard-earned savings from falling temptations and thieves!
+</p>
 
-You'll need [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed.
+<p align="center">
+  <img src="https://img.shields.io/badge/Phaser-3.55.2-orange?style=flat-square&logo=phaser" alt="Phaser 3" />
+  <img src="https://img.shields.io/badge/Vite-3.1.8-646CFF?style=flat-square&logo=vite" alt="Vite" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License" />
+</p>
 
-It is highly recommended to use [Node Version Manager](https://github.com/nvm-sh/nvm) (nvm) to install Node.js and npm.
+---
 
-For Windows users there is [Node Version Manager for Windows](https://github.com/coreybutler/nvm-windows).
+## 📖 About The Game
 
-Install Node.js and `npm` with `nvm`:
+In **Wallet Defend**, you take control of a wallet trying to protect your money. Falling from the sky are shopping temptations and sneaky robbers out to empty your pockets! Shoot coins at temptations to earn points and stay alive, while dodging the fast-falling robbers. Catch falling piggy banks (*celengan*) to restore your life!
 
+> *"Menabung adalah langkah awal untuk kesuksesan"* (Saving is the first step to success)
+
+---
+
+## 🎮 How to Play
+
+### Controls
+The game is played using on-screen interactive touch / click controls:
+
+* ⬅️ **Left Arrow Button** (bottom-left): Move the wallet left.
+* ➡️ **Right Arrow Button** (bottom-left): Move the wallet right.
+* 🪙 **Shoot Button** (bottom-right): Shoot coins upward.
+
+### Items & Enemies
+
+| Object | Type | Behavior & Effect |
+| :--- | :--- | :--- |
+| 🍕 **Pizza** | Hazard / Target | Falls slowly (Speed: 75). Hit with a coin to destroy for **+10 Score**. Touching it costs **1 Life**. |
+| 👜 **Shopping Bag** | Hazard / Target | Falls slowly (Speed: 75). Hit with a coin to destroy for **+5 Score**. Touching it costs **1 Life**. |
+| 🦹 **Robber** | Enemy / Hazard | Falls rapidly (Speed: 300). Coins cannot destroy robbers—you must **dodge** them! Touching it costs **1 Life**. |
+| 🐷 **Celengan (Piggy Bank)** | Power-Up / Life | Spawns every 20 seconds. Catch it with your wallet to **restore +1 Life** (max 3 lives). |
+
+### Health System
+* You start with **3 Lives**.
+* Each collision with an obstacle decreases your life by 1.
+  * **3 Lives**: Normal wallet.
+  * **2 Lives**: Wallet turns red.
+  * **1 Life**: Wallet turns red and semi-transparent.
+  * **0 Lives**: Game Over!
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) (v16+ recommended) and `npm` installed.
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/tian573/Wallet-Defend.git
+   cd Wallet-Defend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run start
+   ```
+
+4. Open your browser at:
+   ```
+   http://localhost:8000
+   ```
+
+### Production Build
+To create an optimized production build:
 ```bash
-nvm install node
-
-nvm use node
-```
-
-Replace 'node' with 'latest' for `nvm-windows`.
-
-## Getting Started
-
-You can clone this repository or use [degit](https://github.com/Rich-Harris/degit) to scaffold the project like this:
-
-```bash
-npx degit https://github.com/ourcade/phaser3-vite-template my-folder-name
-cd my-folder-name
-
-npm install
-```
-
-Start development server:
-
-```
-npm run start
-```
-
-To create a production build:
-
-```
 npm run build
 ```
+The output files will be generated in the `dist` folder.
 
-Production files will be placed in the `dist` folder. Then upload those files to a web server. 🎉
+---
 
-## Project Structure
+## 📁 Project Structure
 
-```
-    .
-    ├── dist
-    ├── node_modules
-    ├── public
-    ├── src
-    │   ├── HelloWorldScene.js
-    │   ├── main.js
-	├── index.html
-    ├── package.json
-```
-
-JavaScript files are intended for the `src` folder. `main.js` is the entry point referenced by `index.html`.
-
-Other than that there is no opinion on how you should structure your project.
-
-There is an example `HelloWorldScene.js` file that can be placed inside a `scenes` folder to organize by type or elsewhere to organize by function. For example, you can keep all files specific to the HelloWorld scene in a `hello-world` folder.
-
-It is all up to you!
-
-## Static Assets
-
-Any static assets like images or audio files should be placed in the `public` folder. It'll then be served from the root. For example: http://localhost:8000/images/my-image.png
-
-Example `public` structure:
-
-```
-    public
-    ├── images
-    │   ├── my-image.png
-    ├── music
-    │   ├── ...
-    ├── sfx
-    │   ├── ...
+```text
+Wallet-Defend/
+├── public/
+│   ├── images/       # Game sprites, buttons, title logo & backgrounds
+│   └── sfx/          # Music and sound effects
+├── src/
+│   ├── Coin.js            # Bullet/coin projectile physics and logic
+│   ├── FallingObject.js   # Base class for falling hazards and items
+│   ├── GameOverScene.js   # Game over screen with score and replay
+│   ├── StartScene.js      # Main menu and start button scene
+│   ├── WalletDefendScene.js # Core gameplay scene and mechanics
+│   └── main.js            # Phaser game configuration and entry point
+├── index.html        # HTML entry point
+├── package.json      # Dependencies and scripts
+└── vite.config.js    # Vite configuration
 ```
 
-They can then be loaded by Phaser with `this.image.load('my-image', 'images/my-image.png')`.
+---
 
-# ESLint
+## 🛠️ Built With
 
-This template uses a basic `eslint` set up for code linting to help you find and fix common problems in your JavaScript code.
+* [Phaser 3](https://phaser.io/) - HTML5 Game Framework
+* [Vite](https://vitejs.dev/) - Frontend Tooling & Dev Server
 
-It does not aim to be opinionated.
+---
 
-[See here for rules to turn on or off](https://eslint.org/docs/rules/).
+## 📄 License
 
-## Dev Server Port
-
-You can change the dev server's port number by modifying the `vite.config.js` file. Look for the `server` section:
-
-```js
-{
-	// ...
-	server: { host: '0.0.0.0', port: 8000 },
-}
-```
-
-Change 8000 to whatever you want.
-
-## License
-
-[MIT License](https://github.com/ourcade/phaser3-vite-template/blob/master/LICENSE)
+This project is licensed under the [MIT License](LICENSE).
